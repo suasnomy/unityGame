@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         // the upper code with space key track dont have sensitivity of moving forward and falling when someone jumps
         if (Input.GetButtonDown("Jump") && isgrounded())
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            Jump();
         }
         //if (Input.GetKey("up"))
         //{
@@ -56,6 +56,21 @@ public class PlayerMovement : MonoBehaviour
        
 
     }
+
+    void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy Head"))
+        {
+            Destroy(collision.transform.parent.gameObject);
+            Jump();
+        }
+    }
+
     //used to check weather our player reached the ground or not.
     // this is to check so that user will only be able to jump when ground is touched.
 
