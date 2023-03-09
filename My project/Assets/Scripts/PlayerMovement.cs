@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
+        //rb.AddForce(new Vector3(horizontalInput, 0f, verticalInput) * movementSpeed);
         //if(Input.GetKeyDown("space")) 
         //{
         //  rb.velocity = new Vector3(0,5f,0);  
@@ -77,5 +78,10 @@ public class PlayerMovement : MonoBehaviour
     bool isgrounded()
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 }
