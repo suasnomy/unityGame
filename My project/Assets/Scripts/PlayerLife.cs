@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
+
+    [SerializeField] AudioSource fallingSound;
     bool dead = false;
 
     private void Update()
     {
         if(transform.position.y < -1f && !dead)
         {
+
+            fallingSound.Play();
             Die();
         }
     }
